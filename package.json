@@ -1,0 +1,24 @@
+{
+  "name": "the_inventory",
+  "version": "1.0.0",
+  "description": "Practica 2025 la Assist",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alverot/The_inventory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alverot/The_inventory/issues"
+  },
+  "homepage": "https://github.com/Alverot/The_inventory#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

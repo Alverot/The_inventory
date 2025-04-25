@@ -4,9 +4,10 @@ const warehouseController = require("../controllers/warehouseController");
 
 
 warehouseRouter.post('/',warehouseController.createWarehouse);
+warehouseRouter.get('/',warehouseController.getAllWarehouses);
+warehouseRouter.get('/:id',warehouseController.getWarehouse);
 
-// router.get('/',warehouseController.getAllWarehouses);
-// router.get('/:id',warehouseController.getWarehouse);
+
 // router.patch('/:id',warehouseController.updateWarehouse);
 // router.put('/:id',warehouseController.updateWarehouse);
 

@@ -6,12 +6,11 @@ const warehouseController = require("../controllers/warehouseController");
 warehouseRouter.post('/',warehouseController.createWarehouse);
 warehouseRouter.get('/',warehouseController.getAllWarehouses);
 warehouseRouter.get('/:id',warehouseController.getWarehouse);
-
-
-// router.patch('/:id',warehouseController.updateWarehouse);
-// router.put('/:id',warehouseController.updateWarehouse);
+warehouseRouter.patch('/:id',warehouseController.updateWarehouse);// updates a single field
+warehouseRouter.put('/:id',warehouseController.replaceWarehouse);//updates all of the body
 
 module.exports = warehouseRouter;
+
 
 
 

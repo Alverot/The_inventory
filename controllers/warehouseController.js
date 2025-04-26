@@ -37,7 +37,6 @@ exports.getWarehouse = async( req, res) =>{
     try
     {
         const { id } = req.params;
-        console.log(id);
         const warehouse = await Warehouse.findOne({ id }).select('-_id');
 
         if(!warehouse){
@@ -47,4 +46,44 @@ exports.getWarehouse = async( req, res) =>{
     }catch(error){
         res.status(500).json({ error: error.message });
     }
+};
+
+exports.updateWarehouse = async( req, res) => {
+    try
+    {
+        const { id } = req.params;
+        const warehouse1 = await Warehouse.findOne({ id })
+        const warehouse = await Warehouse.findOneAndUpdate( warehouse1, req.body,{new: true});
+
+        if(!warehouse){
+            return res.status(404).json({ error: "Warehouse not found"});
+        }
+        res.status(200).send({
+            "message": "Warehouse updated successfully",
+          });
+    }catch(error){
+        res.status(500).json({ error: error.message });
+    }
+
+};
+
+exports.replaceWarehouse = async( req, res) => {
+    try
+    {
+        const { id } = req.params;
+        const {name, location} = req.body;
+
+        const warehouse1 = await Warehouse.findOne({ id })
+        const warehouse = await Warehouse.findOneAndReplace( warehouse1 , {id, name, location});
+
+        if(!warehouse){
+            return res.status(404).json({ error: "Warehouse not found"});
+        }
+        res.status(200).send({
+            "message": "Warehouse updated successfully",
+          });
+    }catch(error){
+        res.status(500).json({ error: error.message });
+    }
+    
 };

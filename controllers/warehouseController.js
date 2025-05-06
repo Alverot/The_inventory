@@ -52,12 +52,11 @@ exports.updateWarehouse = async( req, res) => {
     try
     {
         const { id } = req.params;
-        const warehouse1 = await Warehouse.findOne({ id })
-        const warehouse = await Warehouse.findOneAndUpdate( warehouse1, req.body,{new: true});
-
-        if(!warehouse){
+        const warehouse1 = await Warehouse.findOne({ id });
+        if(!warehouse1){
             return res.status(404).json({ error: "Warehouse not found"});
         }
+        const warehouse = await Warehouse.findOneAndUpdate( warehouse1, req.body,{new: true});
         res.status(200).send({
             "message": "Warehouse updated successfully",
           });
@@ -73,12 +72,13 @@ exports.replaceWarehouse = async( req, res) => {
         const { id } = req.params;
         const {name, location} = req.body;
 
-        const warehouse1 = await Warehouse.findOne({ id })
-        const warehouse = await Warehouse.findOneAndReplace( warehouse1 , {id, name, location});
-
-        if(!warehouse){
+        const warehouse1 = await Warehouse.findOne({ id });
+        
+        if(!warehouse1){
             return res.status(404).json({ error: "Warehouse not found"});
         }
+        const warehouse = await Warehouse.findOneAndReplace( warehouse1 , {id, name, location});
+
         res.status(200).send({
             "message": "Warehouse updated successfully",
           });

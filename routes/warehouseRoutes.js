@@ -2,6 +2,7 @@ const express = require('express');
 const warehouseRouter = express.Router();
 const warehouseController = require("../controllers/warehouseController");
 const productController = require("../controllers/productController");
+const stockController = require("../controllers/stockController");
 
 //Warehouse routes
 
@@ -19,6 +20,18 @@ warehouseRouter.get('/:warehouseId/products/:id',productController.getProduct);
 warehouseRouter.patch('/:warehouseId/products/:id',productController.updateProduct);
 warehouseRouter.put('/:warehouseId/products/:id',productController.replaceProduct);
 warehouseRouter.delete('/:warehouseId/products/:id',productController.deleteProduct);
+
+//Stock Management
+
+
+warehouseRouter.get('/:warehouseId/inventory',stockController.getAllInventory);
+warehouseRouter.get('/:warehouseId/inventory/:productId',stockController.getProductFromInventory);
+warehouseRouter.post('/:warehouseId/inventory/:productId/increase',stockController.increaseStock);
+warehouseRouter.post('/:warehouseId/inventory/:productId/decrease',stockController.decreaseStock);
+warehouseRouter.post('/:warehouseId/inventory/:productId/transfer',stockController.transferStock);
+
+
+
 
 
 module.exports = warehouseRouter;

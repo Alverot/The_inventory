@@ -1,6 +1,7 @@
 const { json } = require('express');
 const Warehouse = require('../models/Warehouse');
 
+
 exports.createWarehouse = async (req, res) => {
     try{
         const {name, location} = req.body;
@@ -14,7 +15,7 @@ exports.createWarehouse = async (req, res) => {
         }
         const warehouse = new Warehouse({id: newId, name, location})
         await warehouse.save();
-        res.status(200).send({
+        res.status(200).json({
             "message": "Warehouse created successfully",
             "id": warehouse.id,
           });
@@ -22,6 +23,7 @@ exports.createWarehouse = async (req, res) => {
         res.status(400).json({error: error.message});
     }
 };
+
 
 exports.getAllWarehouses = async (req, res) =>{
     try{
@@ -56,8 +58,8 @@ exports.updateWarehouse = async( req, res) => {
         if(!warehouse1){
             return res.status(404).json({ error: "Warehouse not found"});
         }
-        const warehouse = await Warehouse.findOneAndUpdate( warehouse1, req.body,{new: true});
-        res.status(200).send({
+        const warehouse = await Warehouse.findOneAndUpdate( warehouse1, req.body);
+        res.status(200).json({
             "message": "Warehouse updated successfully",
           });
     }catch(error){
@@ -79,7 +81,7 @@ exports.replaceWarehouse = async( req, res) => {
         }
         const warehouse = await Warehouse.findOneAndReplace( warehouse1 , {id, name, location});
 
-        res.status(200).send({
+        res.status(200).json({
             "message": "Warehouse updated successfully",
           });
     }catch(error){

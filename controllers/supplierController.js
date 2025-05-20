@@ -15,7 +15,7 @@ exports.createSupplier = async (req, res) => {
         }
         const supplier = new Supplier({ id: newId, name, contactEmail })
         await supplier.save();
-        res.status(200).send({
+        res.status(200).json({
             "message": "Supplier created successfully",
             "id": supplier.id,
         });
@@ -58,7 +58,7 @@ exports.updateSupplier = async (req, res) => {
         }
         const supplier = await Supplier.findOneAndUpdate(supplier1, req.body, { new: true });//{ new: true } returns the updated version
 
-        res.status(200).send({
+        res.status(200).json({
             "message": "Supplier updated successfully",
         });
 
@@ -79,7 +79,7 @@ exports.replaceSupplier = async (req, res) => {
         }
         const supplier1 = await Supplier.findOneAndReplace(supplier,{id, name, contactEmail});
 
-        res.status(200).send({
+        res.status(200).json({
             "message": "Supplier updated successfully",
         });
 

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const prosuctSchema = new mongoose.Schema({
-    id: {type: String, required: true, unique: true },
+    id: {type: String, required: true},
     warehouseId:{type: String, required: true},// a way to identify the warehouse to which it belongs
     name: {type: String, required: true},
     sku: {type: String, required: true},

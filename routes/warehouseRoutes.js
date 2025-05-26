@@ -24,7 +24,7 @@ warehouseRouter.delete('/:warehouseId/products/:id',productController.deleteProd
 //Stock Management
 
 
-warehouseRouter.get('/:warehouseId/inventory',stockController.getAllInventory);
+warehouseRouter.get('/:warehouseId/inventory',stockController.getAllInventory);// returns all the stock from a warehouse
 warehouseRouter.get('/:warehouseId/inventory/:productId',stockController.getProductFromInventory);
 warehouseRouter.post('/:warehouseId/inventory/:productId/increase',stockController.increaseStock);
 warehouseRouter.post('/:warehouseId/inventory/:productId/decrease',stockController.decreaseStock);
